@@ -1,0 +1,85 @@
+{% extends '../../../base.html' %}
+{% load static %}
+{% block title %}Painel de Controle{% endblock title %}
+{% block content %}
+
+<div class="pages-title section-padding">
+    <div class="container">
+        <div style="background:#3a2c4f" class="row">
+            <div class="col-xs-12">
+                <div class="pages-title-text text-center">
+                    <h2 style="color:#f1c68b">Painel de Controle</h2>
+                    <ul class="text-left">
+                        <li><a style="color:#d5a189" href="\">Início</a></li>
+                        <li style="color:#d5a189"><span> // </span>Cart</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section style="background:#2e1d3f" class="section-conten padding-y bg">
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <span class="font-size:18px"><b> {% include "includes/alerts.html" %} </b></span>
+            {% include "includes/dashboard_slider.html" %}
+        
+            <main style="background:#3a2c4f; border-radius:10px" class="col-md-9">
+                <article class="card">
+                <br>
+                <header class="card-header text-center">
+                    <span style="font-size:20px" class="d-inline-block">Logado como:</span>
+                    <strong style="font-size:20px">{{user.full_name | title}}</strong>
+                </header>
+                <hr>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="text-align:center; background:#2e1d3f; border-radius:7px; margin-bottom:10px">
+                            
+                                <div style="font-size:18px;padding:10px" class="card-body">
+                                    <img src="{{profile.profile_picture.url}}" alt="Foto de Perfil" width="100" style="border-radius:50px;">
+                                    <br>
+                                    <br>
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>Nome de Usuário:</b></span> <span style="float:right">{{user.username}}</span></p><br><hr>
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>Email:</b></span> <span style="float:right">{{user.email}}</span></p><br><hr>
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>Telefone:</b></span> <span style="float:right">{{user.Phone_number}}</span></p><br><hr>
+                                    
+                                    {% if profile.address %}
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>Endereço:</b></span> <span style="float:right">{{profile.address}}</span></p><br><hr>
+                                    {% endif %}
+                                    
+                                    {% if profile.city %}
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>Cidade:</b></span> <span style="float:right">{{profile.city}}</span></p><br><hr>
+                                    {% endif %}
+                                    
+                                    {% if profile.state %}
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>Estado:</b></span> <span style="float:right">{{profile.state}}</span></p><br><hr>
+                                    {% endif %}
+
+                                    {% if profile.country %}
+                                    <p style="font-size:16px;" class="mb-0"><span style="float:left"><b>País:</b></span> <span style="float:right">{{profile.country}}</span></p><br><hr>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card" style="text-align:center;">
+                                <div style="background:#2e1d3f; border-radius:7px; padding:10px; height:150px" class="card-body">
+                                    <h5 style="margin-top:30px; font-size:23px" class="card-title">Total de Pedidos</h5>
+                                    <h4 style="font-size:25px">{{orders_count}}</h4>
+                                    
+                                </div>
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+                </article>
+            </main>
+        </div>
+    </div><br>
+</section>
+
+{% endblock content %}

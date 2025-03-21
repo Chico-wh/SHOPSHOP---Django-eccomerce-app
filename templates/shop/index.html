@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}SHOPSHOP{% endblock title %}
+
+{% block content %}
+<!-- Header Section -->
+<header style="background:rgb(100, 100, 100); padding: 20px;">
+    <div class="container text-center">
+    </div>
+</header>
+
+
+<!-- Collection Section -->
+<section style="background:#1c1427;" class="collection-area collection-area2 section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="single-colect banner collect-one">
+                    <a href="#"><img src="{% static 'img/new/covaer1.jpg' %}" alt="" /></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="colect-text">
+                    <h4><a href="#">Fashion Collection 2016</a></h4>
+                    <h5>Big sale of the men 2016 fashion <br /> Up To 23% Off!</h5>
+                    <a href="#">Shop Now <i class="mdi mdi-arrow-right"></i></a>
+                </div>
+                <div class="collect-img banner margin single-colect">
+                    <a href="#"><img src="{% static 'img/new/0.jpg' %}" alt="" /></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="collect-img banner single-colect">
+                    <a href="#"><img src="{% static 'img/new/1.jpg' %}" alt="" /></a>
+                </div>
+                <div class="colect-text">
+                    <h4><a href="#">Men’s Collection 2016</a></h4>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <a href="#">Shop Now <i class="mdi mdi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br><br>
+
+<!-- Featured Products Section -->
+<section class="single-products products-two section-padding extra-padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title text-center">
+                    <h2>Featured Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <ul class="load-list load-list-one">
+                <li>
+                    <div class="row text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="single-product">
+                                <div class="product-img">
+                                    <div class="pro-type">
+                                        <span>new</span>
+                                    </div>
+                                    <a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/4.jpg' %}" alt="Product Title" /></a>
+                                    <div class="actions-btn">
+                                        <a href="#"><i class="mdi mdi-cart"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#quick-view"><i class="mdi mdi-eye"></i></a>
+                                        <a href="#"><i class="mdi mdi-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-dsc">
+                                    <p><a href="#">Men’s Black T-Shirt</a></p>
+                                    <span>$65.20</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="single-product">
+                                <div class="product-img">
+                                    <div class="pro-type sell">
+                                        <span>sell</span>
+                                    </div>
+                                    <a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/6.jpg' %}" alt="Product Title" /></a>
+                                    <div class="actions-btn">
+                                        <a href="#"><i class="mdi mdi-cart"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#quick-view"><i class="mdi mdi-eye"></i></a>
+                                        <a href="#"><i class="mdi mdi-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-dsc">
+                                    <p><a href="#">Men’s White T-Shirt</a></p>
+                                    <span>$57.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 r-margin-top">
+                            <div class="single-product">
+                                <div class="product-img">
+                                    <div class="pro-type">
+                                        <span>-15%</span>
+                                    </div>
+                                    <a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/11.jpg' %}" alt="Product Title" /></a>
+                                    <div class="actions-btn">
+                                        <a href="#"><i class="mdi mdi-cart"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#quick-view"><i class="mdi mdi-eye"></i></a>
+                                        <a href="#"><i class="mdi mdi-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-dsc">
+                                    <p><a href="#">Men’s Blue T-Shirt</a></p>
+                                    <span>$56.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 r-margin-top">
+                            <div class="single-product">
+                                <div class="product-img">
+                                    <a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/0012.jpg' %}" alt="Product Title" /></a>
+                                    <div class="actions-btn">
+                                        <a href="#"><i class="mdi mdi-cart"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#quick-view"><i class="mdi mdi-eye"></i></a>
+                                        <a href="#"><i class="mdi mdi-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-dsc">
+                                    <p><a href="#">Men’s Grey T-Shirt</a></p>
+                                    <span>$96.20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <br>
+            <button id="load-more-one">Load More</button>
+        </div>
+    </div>
+</section>
+
+<br><br>
+
+<!-- Footer Section -->
+<footer style="background: #1c1427; color: #f4cca4; padding: 30px 0;">
+    <div class="container text-center">
+        <p>&copy; 2025 E ShopLicious | All Rights Reserved</p>
+    </div>
+</footer>
+{% endblock content %}

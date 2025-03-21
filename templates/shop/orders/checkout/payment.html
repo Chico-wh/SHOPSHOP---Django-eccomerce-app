@@ -1,0 +1,196 @@
+{% extends '../../../base.html' %}
+{% load static %}
+{% block title %}Pagamento{% endblock title %}
+{% block content %}
+
+<!-- Título da página -->
+<div class="pages-title section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="pages-title-text text-center">
+          <h2 style="color:#f4cca4">Pagamento</h2>
+          <ul class="text-left">
+            <li><a style="color:#d99879" href="\">Início</a></li>
+            <li style="color:#d99879"><span> // </span>Finalizar Pedido</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fim do título da página -->
+
+<!-- Seção de Checkout -->
+<section style="margin-bottom:50px;background:#1c1427" class="pages checkout section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div style="border-radius:20px;" class="padding60">
+          <div class="log-title text-center">
+            <h2><strong style="color:#d99879">Endereço de Cobrança</strong></h2><br>
+          </div>
+          <div class="cart-form-text pay-details table-responsive text-center">
+            <table class="tablee" style="width:100%">
+              <thead></thead>
+              <tbody>
+                <tr>
+                  <th style="font-size:15px">Nome</th>
+                  <td style="font-size:15px">{{order.full_name}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Email</th>
+                  <td style="font-size:15px">{{order.email}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Número de Telefone</th>
+                  <td style="font-size:15px">{{order.phone}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Endereço</th>
+                  <td style="font-size:15px">{{order.address}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Cidade</th>
+                  <td style="font-size:15px">{{order.city}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">País</th>
+                  <td style="font-size:15px">{{order.country}}</td>
+                </tr>
+                {% if order.order_note %}
+                <tr>
+                  <th style="font-size:15px">Observação do Pedido</th>
+                  <td style="font-size:15px">{{order.order_note}}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+              <br>
+            </table><br><br>
+            <div class="log-title text-center">
+              <h2><strong style="color:#d99879">Método de Pagamento</strong></h2><br>
+            </div>
+            <h3 style="font-size:15px; margin-left:30px" class="floatleft">PayPal</h3><br><br>
+          </div>
+        </div><br>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div style="border-radius:20px" class="padding60">
+          <div class="log-title text-center">
+            <h2><strong style="color:#d99879">Pedido</strong></h2>
+          </div><br><br>
+          <div class="cart-form-text pay-details table-responsive text-center">
+            <table style="width:100%;">
+              <thead style="border-radius:20px;">
+                <tr>
+                  <th style="color:#f4cca4;background:#1c1427;border-radius:20px 0 0 20px;">Produto</th>
+                  <td style="color:#f4cca4;background:#1c1427;border-radius:0 20px 20px 0;">Total</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                  <th>{{cart_item.product.name}} x {{cart_item.quantity}}</th>
+                  <td>R$ {{cart_item.sub_total}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <th>Envio e Manuseio</th>
+                  <td>R$ {{handing}}</td>
+                </tr>
+                <tr>
+                  <th>IVA</th>
+                  <td>R$ {{vat}}</td>
+                </tr>
+                <tr style="color:#d99879">
+                  <th>Total do Pedido</th>
+                  <td>R$ {{order_total}}</td>
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+            <div style="width:100%" class="submit-text">
+              <div id="paypal-button-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Função para pegar o cookie CSRF
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+
+// Dados do pedido e configuração do PayPal
+var amount = "{{ order_total }}";
+var url = "{% url 'orders:payments' %}";
+var csrftoken = getCookie('csrftoken');
+var orderID = "{{order.order_number}}";
+var payment_method = 'PayPal';
+var redirect_url = "{% url 'orders:order_complete' %}";
+
+// Renderizar o botão do PayPal
+paypal.Buttons({
+  style: {
+    shape: 'rect',
+    label: 'pay',
+    height: 40
+  },
+  
+  createOrder: function(data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: amount,
+        }
+      }]
+    });
+  },
+
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      console.log(details);
+      sendData();
+      
+      function sendData(){
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            "X-CSRFToken": csrftoken,
+          },
+          body: JSON.stringify({
+            orderID: orderID,
+            transID: details.id,
+            payment_method: payment_method,
+            status: details.status,
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;
+        });
+      }
+    });
+  }
+
+}).render('#paypal-button-container');
+</script>
+
+{% endblock content %}
