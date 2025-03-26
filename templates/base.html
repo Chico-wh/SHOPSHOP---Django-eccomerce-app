@@ -1,22 +1,19 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}E - S H O P{% endblock title %}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo.jpg' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SHOPSHOP{% endblock title %}</title>
 
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/shopshop_logo.ico' %}" type="image/x-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- All CSS here -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -24,112 +21,98 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
-    <!-- Modernizr JS -->
-    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
-
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ATDakGEFESlSq0xbOzxw0W-dZUWrKfiedaKAFHEk0QKfsUeeR_9j6G1A78TUmvFJuMvz3ArZroEobPHY&currency=USD"></script>
-
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-
         body {
-            background-color: #f7f7f7;
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fafafa;
             color: #333;
-            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Header Section */
         .header {
-            background-color: #333;
+            background-color: #2a2a2a;
             color: #fff;
             padding: 20px 0;
-            width: 100%;
-            top: 0;
-            
+            text-align: center;
         }
 
-        .logo a {
-            font-size: 32px;
-            font-weight: 700;
-            color: #f4cca4;
-            text-decoration: none;
+        .header .logo {
+            font-size: 38px;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
-        .header-nav {
+        .header .logo span {
+            color: #e8a12e;
+        }
+
+        /* Navbar */
+        .navbar {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 20px;
+            background-color: #333;
+            padding: 15px;
         }
 
-        .header-nav a {
-            color: #f4cca4;
-            font-size: 18px;
-            text-decoration: none;
-            padding: 12px 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .header-nav a:hover {
-            background-color: #d99879;
-            border-radius: 5px;
+        .navbar a {
             color: #fff;
+            font-size: 18px;
+            margin: 0 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .navbar a:hover {
+            color: #e8a12e;
+            border-bottom: 2px solid #e8a12e;
         }
 
         /* Search Bar */
         .search-bar {
-            display: flex;
-            justify-content: center;
-            margin-top: 80px;
+            text-align: center;
+            margin-top: 50px;
         }
 
         .search-bar input {
-            padding: 15px 25px;
+            padding: 12px;
             font-size: 16px;
-            border-radius: 50px;
-            border: 2px solid #d99879;
-            width: 400px;
+            width: 350px;
+            border: 2px solid #e8a12e;
+            border-radius: 30px;
             outline: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .search-bar input:focus {
-            border-color: #ba135d;
+            border-color: #ff6600;
         }
 
         .search-bar button {
-            padding: 15px;
-            background-color: #d99879;
+            padding: 12px;
+            background-color: #e8a12e;
             border: none;
-            border-radius: 50px;
+            border-radius: 30px;
             margin-left: -50px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .search-bar button:hover {
-            background-color: #ba135d;
+            background-color: #ff6600;
         }
 
         /* Footer */
         .footer {
             background-color: #333;
             color: #fff;
-            padding: 40px 0;
             text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
         .footer p {
-            margin: 10px 0;
             font-size: 14px;
         }
 
@@ -137,6 +120,7 @@
         .user-menu {
             position: relative;
             display: inline-block;
+            margin-top: 20px;
         }
 
         .user-menu ul {
@@ -156,30 +140,30 @@
         }
 
         .user-menu a {
-            color: #f4cca4;
+            color: #fff;
             padding: 10px;
             text-decoration: none;
             display: block;
         }
 
         .user-menu a:hover {
-            background-color: #d99879;
+            background-color: #e8a12e;
             border-radius: 5px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .header-nav {
+            .navbar {
                 flex-direction: column;
-                gap: 10px;
+                align-items: center;
+            }
+
+            .navbar a {
+                margin: 10px 0;
             }
 
             .search-bar input {
                 width: 80%;
-            }
-
-            .search-bar button {
-                margin-left: -40px;
             }
         }
     </style>
@@ -189,81 +173,47 @@
 
     <!-- Header Section -->
     <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="logo">
-                        <a href="/">SHOP<span style="color:#d99879">shop</span></a>
-                    </div>
-                    <div class="header-nav">
-                        <a href="/">Início</a>
-                        <a href="{% url 'shop:shop' %}">Loja</a>
-                        <a href="#">Categorias</a>
-                        <a href="blog.html">Blog</a>
-                        <a href="about.html">Sobre</a>
-                        <a href="contact.html">Contato</a>
-                    </div>
-
-                    <!-- Login/Register Section -->
-                    <div class="user-menu">
-                        {% if user.id is None %}
-                        <a href="#">Conta</a>
-                        <ul>
-                            <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                            <li><a href="{% url 'accounts:register' %}">Cadastrar</a></li>
-                        </ul>
-                        {% else %}
-                        <a href="#">Olá, {{ user.first_name|capfirst }}</a>
-                        <ul>
-                            <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
-                            <li><a href="{% url 'accounts:logout' %}">Sair</a></li>
-                        </ul>
-                        {% endif %}
-                    </div>
-
-                    <div class="search-bar">
-                        <form action="{% url 'shop:search' %}" method="GET">
-                            <input type="text" name="keyword" placeholder="Buscar produtos...">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="logo">
+            SHOP<span style="color:#e8a12e;">SHOP</span>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container" style="margin-top: 150px;">
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <a href="/">Início</a>
+        <a href="{% url 'shop:shop' %}">Loja</a>
+        <a href="#">Categorias</a>
+        <a href="#">Blog</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+        <a href="/account/login">Entrar</a>
+        <a href="/account/register">Registrar-se</a>
+    </nav>
+
+    <!-- Search Section -->
+    <div class="search-bar">
+        <form action="{% url 'shop:search' %}" method="GET">
+            <input type="text" name="keyword" placeholder="Buscar produtos...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container" style="margin-top: 100px;">
         {% block content %}
         <!-- O conteúdo será injetado aqui -->
         {% endblock content %}
     </div>
 
-
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 SHOPSHOP. Todos os direitos reservados.</p>
+    </footer>
 
     <!-- Scripts JS -->
     <script src="{% static 'js/vendor/jquery-1.12.3.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
-    <script src="{% static 'js/countdown.js' %}"></script>
-    <script src="{% static 'js/jquery.nivo.slider.pack.js' %}"></script>
-    <script src="{% static 'js/jquery.simpleLens.min.js' %}"></script>
-    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'js/load-more.js' %}"></script>
-    <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.thumb a').click(function(e){
-                e.preventDefault();
-                $('.mainImage img').attr('src', $(this).attr("href"));
-                $('.mainImage a').attr('data-lens-image', $(this).attr("data-lens-image"));
-            })
-        })
-    </script>
 
 </body>
 

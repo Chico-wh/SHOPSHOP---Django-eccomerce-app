@@ -2,8 +2,8 @@
 {% load static %}
 {% block title %}Shop{% endblock %}
 {% block content %}
-<!-- header section end -->
-<!-- pages-title-start -->
+<!-- Header Section -->
+<!-- Pages Title -->
 <div class="pages-title section-padding" style="background-color: #000; color: #fff;">
   <div class="container">
     <div class="row">
@@ -28,12 +28,12 @@
   </div>
 </div>
 <br>
-<!-- pages-title-end -->
 
-<!-- product-grid-view content section start -->
+<!-- Sidebar and Products Section -->
 <section class="pages products-page section-padding-bottom" style="background-color: #111;">
   <div class="container">
     <div class="row">
+      <!-- Sidebar -->
       <div class="col-xs-12 col-sm-4 col-md-3">
         <div class="sidebar left-sidebar">
           <div class="s-side-text" style="background: #1a1a1a; color: #fff; border-radius: 20px 20px 0 0;">
@@ -52,6 +52,7 @@
         </div>
       </div>
 
+      <!-- Products Section -->
       <div class="col-xs-12 col-sm-8 col-md-9">
         <div class="right-products">
           <div class="row">
@@ -71,6 +72,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Products Grid and List View -->
           <div class="row">
             <div class="tab-content grid-content">
               <div class="tab-pane fade in active text-center" id="grid">
@@ -115,6 +118,7 @@
                 {% endfor %}
               </div>
 
+              <!-- List View -->
               <div class="tab-pane fade in" id="list">
                 {% for product in products %}
                   <div class="col-xs-12">
@@ -157,7 +161,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Pagination -->
           <div class="row">
             <div class="col-sm-12">
@@ -169,7 +173,6 @@
                     {% else %}
                       <li><a href="#" style="color: #fff;"><i class="mdi mdi-arrow-left-bold"></i></a></li>
                     {% endif %}
-
                     {% for x in products.paginator.page_range %}
                       {% if products.number == x %}
                         <li><a href="#" style="color: #fff;">{{x}}</a></li>
@@ -177,7 +180,6 @@
                         <li><a href="?page={{x}}" style="color: #fff;">{{x}}</a></li>
                       {% endif %}
                     {% endfor %}
-
                     {% if products.has_next %}
                       <li><a href="?page={{products.next_page_number}}" style="color: #fff;"><i class="mdi mdi-arrow-right-bold"></i></a></li>
                     {% else %}
@@ -193,5 +195,4 @@
     </div>
   </div>
 </section>
-
 {% endblock content %}
